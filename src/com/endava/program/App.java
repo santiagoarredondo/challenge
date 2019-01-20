@@ -1,5 +1,9 @@
 package com.endava.program;
 
+import com.endava.db.AuthorDB;
+import com.endava.model.Author;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App {
@@ -13,6 +17,9 @@ public class App {
     }
 
     public static void main(String[] args){
-        System.out.println("hola");
+        ArrayList<Author> a = AuthorDB.findAuthor(1, "","");
+        for (Author author: a) {
+            System.out.println(author.toString());
+        }
     }
 }
