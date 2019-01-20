@@ -1,6 +1,7 @@
 package com.endava.model;
 
 public class Publisher extends Registry{
+
     private String name;
     private long NIT;
 
