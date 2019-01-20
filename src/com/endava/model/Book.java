@@ -4,17 +4,21 @@ public class Book extends Registry{
 
     private String name;
     private long ISBN;
-    private Author author;
-
-    public Book(int id, String name, long ISBN, Author author) {
-        super(id);
-        this.name = name;
-        this.ISBN = ISBN;
-        this.author = author;
-    }
+    private int authorId;
+    private int libarayId;
+    private int publisherId;
 
     public Book(int id) {
         super(id);
+    }
+
+    public Book(int id, String name, long ISBN, int authorId, int libarayId, int publisherId) {
+        super(id);
+        this.name = name;
+        this.ISBN = ISBN;
+        this.authorId = authorId;
+        this.libarayId = libarayId;
+        this.publisherId = publisherId;
     }
 
     public String getName() {
@@ -33,11 +37,27 @@ public class Book extends Registry{
         this.ISBN = ISBN;
     }
 
-    public Author getAuthor() {
-        return author;
+    public int getAuthorId() {
+        return authorId;
     }
 
-    public void setAuthor(Author author) {
-        this.author = author;
+    public void setAuthorId(int authorId) {
+        this.authorId = authorId;
+    }
+
+    public int getLibarayId() {
+        return libarayId;
+    }
+
+    public void setLibarayId(int libarayId) {
+        this.libarayId = libarayId;
+    }
+
+    public int getPublisherId() {
+        return publisherId;
+    }
+
+    public void setPublisherId(int publisherId) {
+        this.publisherId = publisherId;
     }
 }

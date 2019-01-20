@@ -17,7 +17,7 @@ public class App {
     }
 
     public static void main(String[] args){
-        ArrayList<Author> a = AuthorDB.findAuthor(1, "","");
+        ArrayList<Author> a = AuthorDB.findAuthor(0, "","");
         for (Author author: a) {
             System.out.println(author.toString());
         }
