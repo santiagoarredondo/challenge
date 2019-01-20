@@ -1,4 +1,4 @@
-package com.endava.db;
+package com.endava.utils;
 
 import java.sql.Connection;
 
