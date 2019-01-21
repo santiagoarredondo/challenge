@@ -11,7 +11,7 @@ public class DataBase {
         String sid = "juno";
         //jdbc:oracle:thin:@localhost:1521:juno
         String url = "jdbc:oracle:thin:@" + serverName + ":" + portNumber + ":" + sid;
-        String username = "ARREDONDO";
+        String username = "SYSTEM";
         String password = "Admon";
         return DriverManager.getConnection(url, username, password);
     }
