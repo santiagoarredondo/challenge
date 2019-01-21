@@ -72,7 +72,7 @@ public class BookDB {
         try {
             Connection conn = DataBase.getConnection();
             Statement statement = null;
-            //ResultSet reg;
+            ResultSet reg;
             String sentence = "update book set ";
             if (id==0){
                 return "Invalid id";
@@ -84,12 +84,13 @@ public class BookDB {
                     "isbn = "+ISBN+", " +
                     "author = '"+author+"', " +
                     "lan = '"+language+"', " +
-                    "publisher = '"+publisher+"', " +
+                    "publisher = '"+publisher+"' " +
                     "where id = "+id+";";
             statement = conn.createStatement();
-            boolean b = statement.execute(sentence);
+            System.out.println("ejecutando : "+sentence);
+            reg = statement.executeQuery(sentence);
         }catch (Exception e){
-            //e.printStackTrace();
+            e.printStackTrace();
             return e.toString()+" : "+e.getMessage();
         }
         return message;
@@ -111,7 +112,7 @@ public class BookDB {
             statement = conn.createStatement();
             boolean b = statement.execute(sentence);
         }catch (Exception e){
-            //e.printStackTrace();
+            e.printStackTrace();
             return e.toString()+" : "+e.getMessage();
         }
         return message;
@@ -139,9 +140,10 @@ public class BookDB {
                     " '"+name+"', " +
                     ");";
             statement = conn.createStatement();
-            boolean b = statement.execute(sentence);
+            statement.execute(sentence);
+           // boolean b = statement.execute(sentence);
         }catch (Exception e){
-            //e.printStackTrace();
+            e.printStackTrace();
             return e.toString()+" : "+e.getMessage();
         }
         return message;

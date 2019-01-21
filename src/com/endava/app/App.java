@@ -70,23 +70,23 @@ public class App {
     }
 
     private static void showOptions(){
-        System.out.println("WELLCOME TO THE ENDAVA LIBRARY\n\n" +
+        System.out.println("\nWELLCOME TO THE ENDAVA LIBRARY\n\n" +
                 "choose an option:\n" +
-                "1. Search books" +
-                "2. Add book" +
-                "3. Delete Book" +
-                "4. Update book" +
-                "5. exit");
+                "1. Search books\n" +
+                "2. Add book\n" +
+                "3. Delete Book\n" +
+                "4. Update book\n" +
+                "5. exit\n");
     }
 
     private static void menu(){
         Scanner input = new Scanner(System.in);
         try {
-            showOptions();
-            while (input.nextInt()!=SALIR) {
+            int option = 0;
+            while (option!=SALIR) {
                 showOptions();
                 System.out.println("Please choose an option: ");
-                int option = Integer.parseInt(input.nextLine());
+                option = input.nextInt();
                 switch (option){
                     case 1:
                        search();
