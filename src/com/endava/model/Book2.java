@@ -62,7 +62,7 @@ public class Book2 extends Registry{
 
     @Override
     public String toString() {
-        return super.getId()+" Book{" +
+        return "id = "+super.getId()+" Book{" +
                 "name='" + name + '\'' +
                 ", author='" + author + '\'' +
                 ", ISBN=" + ISBN +
