@@ -123,7 +123,7 @@ public class BookDB {
             Connection conn = DataBase.getConnection();
             Statement statement = null;
             //ResultSet reg;
-            String sentence = "insert into book values (book_sq.NEXTVAL, ";
+            String sentence = "insert into book (id, isbn, author, published, lan, publisher, name) values (book_sq.NEXTVAL, ";
 
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
             LocalDate localDate = LocalDate.now();
@@ -136,7 +136,7 @@ public class BookDB {
                     " '"+ dtf.format(localDate) +"', " +
                     " '"+language+"', " +
                     " '"+publisher+"', " +
-                            " name= '"+name+"', " +
+                    " '"+name+"', " +
                     ");";
             statement = conn.createStatement();
             boolean b = statement.execute(sentence);
