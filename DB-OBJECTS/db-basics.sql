@@ -21,11 +21,12 @@ CREATE TABLE PUBLISHER(
 	PRIMARY KEY (id)
 )
 CREATE TABLE BOOK(
-	ID NUMBER(10) null,
-	ISBN NUMBER (10),
-	authorid NUMBER (10),
-	libraryid NUMBER (10),
-	publisherid NUMBER (10),
+	ID NUMBER(38) null,
+	ISBN NUMBER (38),
+	author VARCHAR2 (100),
+	published VARCHAR2 (100),
+	lan VARCHAR2 (100),
+	publisher VARCHAR2 (100),
 	CONSTRAINT idbook_pk
 	PRIMARY KEY (id)
 )

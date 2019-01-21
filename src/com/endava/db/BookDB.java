@@ -1,7 +1,7 @@
 package com.endava.db;
 
 
-import com.endava.model.Book;
+import com.endava.model.Book2;
 import com.endava.utils.DataBase;
 
 import java.sql.Connection;
@@ -10,8 +10,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class BookDB {
-    public static ArrayList<Book> findBook(int id, String name, long ISBN, int authorId, int publisherId, int libraryId){
-        ArrayList<Book> result = new ArrayList<Book>();
+    public static ArrayList<Book2> findBook(int id, String name, String author, int ISBN, String language, String publisher){
+        ArrayList<Book2> result = new ArrayList<Book2>();
         try {
             Connection conn = DataBase.getConnection();
             Statement statement = null;
@@ -22,24 +22,21 @@ public class BookDB {
                 sentence+=" id ="+id+" AND ";
             }
 
-            if (authorId>=0){
-                sentence+=" authorid ="+id+" AND ";
-            }
-
             if (ISBN>=0){
                 sentence+=" ISBN ="+id+" AND ";
             }
 
-            if (publisherId>=0){
-                sentence+=" publisherid ="+id+" AND ";
+
+            if (!(author.equals(null)||author.equals(""))){
+                sentence+=" author = '"+author+"' AND";
             }
 
-            if (libraryId>=0){
-                sentence+=" libraryid ="+id+" AND ";
+            if (!(language.equals(null)||language.equals(""))){
+                sentence+=" lan = '"+language+"' AND";
             }
 
-            if (!(name.equals(null)||name.equals(""))){
-                sentence+=" name = '"+name+"' AND";
+            if (!(publisher.equals(null)||publisher.equals(""))){
+                sentence+=" publisher = '"+publisher+"' AND";
             }
 
             sentence+=" 1=1";
@@ -49,12 +46,12 @@ public class BookDB {
             reg = statement.executeQuery(sentence);
 
             while (reg.next()){
-                Book b = new Book(reg.findColumn("id"));
+                Book2 b = new Book2(reg.findColumn("id"));
                 b.setName(reg.getString(reg.findColumn("name")));
                 b.setISBN(reg.findColumn("isbn"));
-                b.setAuthorId(reg.findColumn("authorid"));
-                b.setLibarayId(reg.findColumn("libraryid"));
-                b.setPublisherId(reg.findColumn("publisherid"));
+                b.setAuthor(reg.getString(reg.findColumn("author")));
+                b.setLanguage(reg.getString(reg.findColumn("lan")));
+                b.setPublisher(reg.getString(reg.findColumn("publisher")));
                 result.add(b);
             }
 
