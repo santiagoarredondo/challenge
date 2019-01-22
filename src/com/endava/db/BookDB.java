@@ -5,6 +5,7 @@ import com.endava.model.Book2;
 import com.endava.utils.DataBase;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.LocalDate;
@@ -60,7 +61,7 @@ public class BookDB {
                 b.setPublisher(reg.getString(reg.findColumn("publisher")));
                 result.add(b);
             }
-
+            conn.close();
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -85,10 +86,11 @@ public class BookDB {
                     "author = '"+author+"', " +
                     "lan = '"+language+"', " +
                     "publisher = '"+publisher+"' " +
-                    "where id = "+id+";";
+                    "where id = "+id+"";
             statement = conn.createStatement();
             System.out.println("ejecutando : "+sentence);
-            reg = statement.executeQuery(sentence);
+            statement.executeUpdate(sentence);
+            conn.close();
         }catch (Exception e){
             e.printStackTrace();
             return e.toString()+" : "+e.getMessage();
@@ -108,9 +110,10 @@ public class BookDB {
             }
 
             sentence+=
-                    "where id = "+id+";";
+                    "where id = "+id+"";
             statement = conn.createStatement();
-            boolean b = statement.execute(sentence);
+            statement.execute(sentence);
+            conn.close();
         }catch (Exception e){
             e.printStackTrace();
             return e.toString()+" : "+e.getMessage();
@@ -134,14 +137,20 @@ public class BookDB {
             }
             sentence+=ISBN+", " +
                     "'"+author+"', " +
-                    " '"+ dtf.format(localDate) +"', " +
+                    " '"+ dtf.format(localDate).toString() +"', " +
                     " '"+language+"', " +
                     " '"+publisher+"', " +
-                    " '"+name+"', " +
-                    ");";
-            statement = conn.createStatement();
-            statement.execute(sentence);
-           // boolean b = statement.execute(sentence);
+                    " '"+name+"' " +
+                    ")";
+            //statement = conn.createStatement();
+            //statement.execute(sentence);
+            System.out.println(sentence);
+            //statement.execute(sentence);
+            //statement.executeUpdate(sentence);
+            PreparedStatement st = conn.prepareStatement(sentence);
+            st.executeUpdate();
+            conn.close();
+            //boolean b = statement.execute(sentence);
         }catch (Exception e){
             e.printStackTrace();
             return e.toString()+" : "+e.getMessage();
